@@ -1,7 +1,7 @@
 import Foundation
 
 public extension GoogleDirectionResponse {
-  public enum StatusType: String, Codable {
+  public enum StatusType: String, Decodable {
     case internalError
     
     // MARK: - Google's Statuses

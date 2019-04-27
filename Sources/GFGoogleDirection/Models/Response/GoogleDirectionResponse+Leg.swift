@@ -1,7 +1,7 @@
-import Foundation
+import Vapor
 
 extension GoogleDirectionResponse {
-  public struct Leg: Decodable {
+  public struct Leg: Content {
     public var distance: UInt
     public var duration: UInt
     public var durationInTraffic: UInt?

@@ -1,7 +1,7 @@
-import Foundation
+import Vapor
 
 extension GoogleDirectionResponse {
-  public struct Route: Decodable {
+  public struct Route: Content {
     
     /// This polyline is an approximate (smoothed) path of the step
     public var polyline: String

@@ -1,7 +1,7 @@
-import Foundation
+import Vapor
 
 extension GoogleDirectionResponse {
-  public struct Waypoint: Decodable {
+  public struct Waypoint: Content {
     var status: String
     var placeId: String
     var types: [String]

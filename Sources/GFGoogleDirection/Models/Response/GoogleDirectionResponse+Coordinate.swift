@@ -1,7 +1,7 @@
-import Foundation
+import Vapor
 
 extension GoogleDirectionResponse {
-  public struct Coordinate: Decodable {
+  public struct Coordinate: Content {
     public var latitude: Double
     public var longitude: Double
     
