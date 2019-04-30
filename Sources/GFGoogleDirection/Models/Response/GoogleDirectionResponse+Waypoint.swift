@@ -5,13 +5,15 @@ extension GoogleDirectionResponse {
     var status: String
     var placeId: String
     var types: [String]
-    
-    enum CodingKeys: String, CodingKey {
-      case status = "geocoder_status"
-      case placeId = "place_id"
-      
-      case types
-    }
   }
 }
 
+// MARK: - CodingKeys
+extension GoogleDirectionResponse.Waypoint {
+  enum CodingKeys: String, CodingKey {
+    case status = "geocoder_status"
+    case placeId = "place_id"
+    
+    case types
+  }
+}

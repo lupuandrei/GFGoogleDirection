@@ -20,16 +20,18 @@ extension GoogleDirectionResponse {
       warnings = try container.decode([String].self, forKey: .warnings)
       legs = try container.decode([Leg].self, forKey: .legs)
     }
-    
-    enum CodingKeys: String, CodingKey {
-      case polyline = "overview_polyline"
-      case warnings
-      case legs
-    }
-    
-    enum PolylineCodingKeys: String, CodingKey {
-      case points
-    }
   }
+}
 
+// MARK: - CodingKeys
+extension GoogleDirectionResponse.Route {
+  enum CodingKeys: String, CodingKey {
+    case polyline = "overview_polyline"
+    case warnings
+    case legs
+  }
+  
+  enum PolylineCodingKeys: String, CodingKey {
+    case points
+  }
 }

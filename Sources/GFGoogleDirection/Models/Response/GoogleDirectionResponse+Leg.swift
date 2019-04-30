@@ -29,21 +29,23 @@ extension GoogleDirectionResponse {
       
     }
     
-    enum CodingKeys: String, CodingKey {
-      case distance
-      case duration
-      case durationInTraffic = "duration_in_traffic"
-      case startLocation = "start_location"
-      case endLocation = "end_location"
-      case startAddress = "start_address"
-      case endAddress = "end_address"
-    }
-    
-    enum ExpandedKeys: String, CodingKey {
-      case value
-      case text
-    }
-    
   }
 }
 
+// MARK: - CodingKeys
+extension GoogleDirectionResponse.Leg {
+  enum CodingKeys: String, CodingKey {
+    case distance
+    case duration
+    case durationInTraffic = "duration_in_traffic"
+    case startLocation = "start_location"
+    case endLocation = "end_location"
+    case startAddress = "start_address"
+    case endAddress = "end_address"
+  }
+  
+  enum ExpandedKeys: String, CodingKey {
+    case value
+    case text
+  }
+}

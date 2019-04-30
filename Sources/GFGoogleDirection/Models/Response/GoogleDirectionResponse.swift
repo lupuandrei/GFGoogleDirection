@@ -19,6 +19,22 @@ public struct GoogleDirectionResponse: Content {
     routes = try container.decode([Route].self, forKey: .routes)
   }
   
+}
+
+// MARK: - Readable
+extension GoogleDirectionResponse {
+  public func convertToReadable() throws -> Readable {
+    // the response must contain a route and one leg
+    guard let route = routes.first, let leg = route.legs.first else {
+      throw GoogleDirectionError(status: .internalError, errorMessage: "Invalid response")
+    }
+    
+    return Readable(waypoints: waypoints, polyline: route.polyline, distance: leg.distance, duration: leg.duration, durationInTraffic: leg.durationInTraffic, startLocation: leg.startLocation, endLocation: leg.endLocation, startAddress: leg.startAddress, endAddress: leg.endAddress)
+  }
+}
+
+// MARK: - CodingKeys
+extension GoogleDirectionResponse {
   enum CodingKeys: String, CodingKey {
     case waypoints = "geocoded_waypoints"
     case routes
@@ -28,5 +44,4 @@ public struct GoogleDirectionResponse: Content {
     case errorMessage = "error_message"
     case status
   }
-  
 }
