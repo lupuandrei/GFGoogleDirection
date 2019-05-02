@@ -19,8 +19,8 @@ final class MyController: RouteCollection {
   func calculate(_ req: Request) throws -> Future<GoogleDirectionResponse.Readable> {
     let request = GoogleDirectionRequest(startLatitude: 44.252, startLongitude: 23.655922, endLatitude: 44.344678, endLongitude: 23.914788)
     
-    let googleDirectionService = try req.make(GFGoogleDirection.self)
-    return googleDirectionService.request(client: try! req.client(), request: request).map({ (googleResponse) in
+    let client = try req.make(GFGoogleDirectionClient.self)
+    return client.request(request: request).map({ (googleResponse) in
       return googleResponse
     }).map({ (response) in
       return try response.convertToReadable()
@@ -83,6 +83,7 @@ dependencies: [
 ### Register GFCommunication as service
 `configure.swif`
 ```
-services.register(GFGoogleDirection(apiKey: "GOOGLE-API-KEY"))
-
+services.register { container -> GoogleDirectionClient 
+return GoogleDirectionClient(apiKey: "GOOGLE-API-KEY", client: try container.make())
+}
 ````

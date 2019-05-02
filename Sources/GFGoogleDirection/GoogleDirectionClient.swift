@@ -1,10 +1,12 @@
 import Vapor
 
-public class GFGoogleDirection: Service {
-  var apiKey: String
+public class GoogleDirectionClient: Service {
+  let client: Client
+  let apiKey: String
   
-  public init(apiKey: String) {
+  public init(apiKey: String, client: Client) {
     self.apiKey = apiKey
+    self.client = client
   }
   
   public func request(client: Client, request: GoogleDirectionRequest) -> Future<GoogleDirectionResponse> {
