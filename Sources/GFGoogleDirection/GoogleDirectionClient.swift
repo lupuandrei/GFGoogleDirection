@@ -9,7 +9,7 @@ public class GoogleDirectionClient: Service {
     self.client = client
   }
   
-  public func request(client: Client, request: GoogleDirectionRequest) -> Future<GoogleDirectionResponse> {
+  public func request(request: GoogleDirectionRequest) -> Future<GoogleDirectionResponse> {
     let url = request.convertToURL(apiKey: self.apiKey)
     return client.get(url).flatMap { (response) in
       return try response.content.decode(GoogleDirectionResponse.self)
